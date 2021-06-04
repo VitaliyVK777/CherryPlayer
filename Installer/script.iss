@@ -10,9 +10,17 @@
 
 ;#define MyAppPortable
 #ifdef MyAppPortable
-  #define MyAppExeUrl "http://download.cherryplayer.com/portable/3_3_0/CherryPlayer.exe"
+  #ifdef MyAppX64
+  #define MyAppExeUrl "http://download.cherryplayer.com/portable/3_3_0/x64/CherryPlayer.exe"
+  #else
+  #define MyAppExeUrl "http://download.cherryplayer.com/portable/3_3_0/x86/CherryPlayer.exe"
+  #endif
 #else
-  #define MyAppExeUrl "http://download.cherryplayer.com/usual/3_3_0/CherryPlayer.exe"
+  #ifdef MyAppX64
+  #define MyAppExeUrl "http://download.cherryplayer.com/usual/3_3_0/x64/CherryPlayer.exe"
+  #else
+  #define MyAppExeUrl "http://download.cherryplayer.com/usual/3_3_0/x86/CherryPlayer.exe"
+  #endif
 #endif
 #define MyAppExeName MyAppName + ".exe"
 #ifdef MyAppX64
@@ -29,9 +37,17 @@
 #define MySetupMutex   "CherryPlayer_Setup_273f2a87-1ac8-42b7-9114-8f71db3f5d73"
 
 #ifdef MyAppPortable
+  #ifdef MyAppX64
+  #define MyOutputFilename MyAppName + "_portable-" + MyAppVersion + "-x64-setup"
+  #else
   #define MyOutputFilename MyAppName + "_portable-" + MyAppVersion + "-setup"
+  #endif
 #else
+  #ifdef MyAppX64
+  #define MyOutputFilename MyAppName + "-" + MyAppVersion + "-x64-setup"
+  #else
   #define MyOutputFilename MyAppName + "-" + MyAppVersion + "-setup"
+  #endif
 #endif
 
 [Setup]

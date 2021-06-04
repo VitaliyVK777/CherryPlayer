@@ -122,7 +122,7 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "{tmp}\{#MyAppExeName}";     DestDir: "{app}"; Flags: ignoreversion external
 Source: "{#MyAppFiles}*";            DestDir: "{app}"; Flags: ignoreversion recursesubdirs
-Source: "{#MyLangFiles}*";           DestDir: "{app}"; Flags: ignoreversion recursesubdirs
+Source: "{#MyLangFiles}*";           DestDir: "{app}\languages"; Flags: ignoreversion recursesubdirs
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

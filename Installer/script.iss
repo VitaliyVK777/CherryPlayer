@@ -133,9 +133,9 @@ InstallingVC2019redist=Installing Microsoft Visual C++ 2019 Redistributable Pack
 
 [Run]
 #ifdef MyAppX64
-Filename: "{tmp}\vc_redist.x64.exe"; StatusMsg: "{cm:InstallingVC2019redist}"; Parameters: "/q /norestart"; Flags: skipifdoesntexist waituntilterminated
+Filename: "{tmp}\vc_redist.x64.exe"; StatusMsg: "{cm:InstallingVC2019redist}"; Flags: skipifdoesntexist waituntilterminated
 #else
-Filename: "{tmp}\vc_redist.x86.exe"; StatusMsg: "{cm:InstallingVC2019redist}"; Parameters: "/q /norestart"; Flags: skipifdoesntexist waituntilterminated
+Filename: "{tmp}\vc_redist.x86.exe"; StatusMsg: "{cm:InstallingVC2019redist}"; Flags: skipifdoesntexist waituntilterminated
 #endif
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 

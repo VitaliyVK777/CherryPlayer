@@ -2,6 +2,7 @@
 
 #define MyAppName "CherryPlayer"
 #define MyAppVersion "3.3.0"
+#define MyAppX64
 
 #ifndef UNICODE
   #error Use the Unicode Inno Setup
@@ -14,7 +15,12 @@
   #define MyAppExeUrl "http://download.cherryplayer.com/usual/3_3_0/CherryPlayer.exe"
 #endif
 #define MyAppExeName MyAppName + ".exe"
-#define MyAppFiles "files\qt5\"
+#ifdef MyAppX64
+  #define MyAppFiles "files\x64\"
+#else
+  #define MyAppFiles "files\x86\"
+#endif
+#define MyLangFiles "..\languages\"
 
 #define MyAppPublisher "CherryPlayer"
 #define MyAppURL       "https://www.cherryplayer.com/"
@@ -44,6 +50,10 @@ AppContact={#MyAppContact}
 DefaultDirName={autopf}\{#MyAppName}
 DisableProgramGroupPage=yes
 LicenseFile=license\license.rtf
+#ifdef MyAppX64
+ArchitecturesAllowed=x64
+ArchitecturesInstallIn64BitMode=x64
+#endif
 #ifdef MyAppPortable
 ; run in non administrative install mode (install for current user only.)
 PrivilegesRequired=lowest
@@ -94,16 +104,21 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "{tmp}\{#MyAppExeName}";     DestDir: "{app}"; Flags: ignoreversion external
 Source: "{#MyAppFiles}*";            DestDir: "{app}"; Flags: ignoreversion recursesubdirs
+Source: "{#MyLangFiles}*";           DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
 Name: "{autodesktop}\{#MyAppName}";  Filename: "{app}\{#MyAppExeName}"; Tasks: desktopicon
 
 [CustomMessages]
-InstallingVC2017redist=Installing Microsoft Visual C++ 2017 Redistributable Package
+InstallingVC2019redist=Installing Microsoft Visual C++ 2019 Redistributable Package
 
 [Run]
-Filename: "{tmp}\vc_redist.x86.exe"; StatusMsg: "{cm:InstallingVC2017redist}"; Parameters: "/q /norestart"; Flags: skipifdoesntexist waituntilterminated
+#ifdef MyAppX64
+Filename: "{tmp}\vc_redist.x64.exe"; StatusMsg: "{cm:InstallingVC2019redist}"; Parameters: "/q /norestart"; Flags: skipifdoesntexist waituntilterminated
+#else
+Filename: "{tmp}\vc_redist.x86.exe"; StatusMsg: "{cm:InstallingVC2019redist}"; Parameters: "/q /norestart"; Flags: skipifdoesntexist waituntilterminated
+#endif
 Filename: "{app}\{#MyAppExeName}"; Description: "{cm:LaunchProgram,{#StringChange(MyAppName, '&', '&&')}}"; Flags: nowait postinstall skipifsilent
 
 [Code]
@@ -124,7 +139,7 @@ begin
   end;
 end;
 
-function VC2017RedistNeedsInstall: Boolean;
+function VC2019RedistNeedsInstall: Boolean;
 var
   Key:     String;
   Install: Cardinal;
@@ -136,13 +151,13 @@ begin
     Key := 'SOFTWARE\Wow6432Node\Microsoft\DevDiv\VC\Servicing\14.0\RuntimeMinimum';
   end;
 
-  if (RegQueryDWordValue (HKEY_LOCAL_MACHINE, Key, 'Install', Install) and
-      RegQueryStringValue(HKEY_LOCAL_MACHINE, Key, 'Version', Version)) then
-  begin
-    if Install = 1 then begin
-      Result := SameStr(Copy(Version, 0, 4), '14.0');
-    end;
-  end;
+  //if (RegQueryDWordValue (HKEY_LOCAL_MACHINE, Key, 'Install', Install) and
+  //    RegQueryStringValue(HKEY_LOCAL_MACHINE, Key, 'Version', Version)) then
+  //begin
+  //  if Install = 1 then begin
+  //    Result := SameStr(Copy(Version, 0, 4), '14.0');
+  //  end;
+  //end;
 end;
 
 procedure InitializeWizard;
@@ -151,8 +166,12 @@ begin
 
   idpDownloadAfter(wpReady);
   idpAddFile('{#MyAppExeUrl}', ExpandConstant('{tmp}\{#MyAppExeName}'));
-  if VC2017RedistNeedsInstall then begin
+  if VC2019RedistNeedsInstall then begin
+#ifdef MyAppX64
+    idpAddFile('https://aka.ms/vs/16/release/vc_redist.x64.exe', ExpandConstant('{tmp}\vc_redist.x64.exe'));
+#else
     idpAddFile('https://aka.ms/vs/16/release/vc_redist.x86.exe', ExpandConstant('{tmp}\vc_redist.x86.exe'));
+#endif
   end;
 end;
 

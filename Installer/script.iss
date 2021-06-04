@@ -150,7 +150,7 @@ begin
     begin
       Parent  := WizardForm.FinishedPage;
       Left    := WizardForm.FinishedLabel.Left;
-      Top     := WizardForm.RunList.Top + ScaleY(35);
+      Top     := WizardForm.RunList.Top + ScaleY(55);
       Height  := ScaleY(Height);
       Caption := 'CherryPlayer is free mediaplayer. Keep it alive with donation to WakeNet.';
     end;

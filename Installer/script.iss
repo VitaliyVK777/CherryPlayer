@@ -152,7 +152,9 @@ begin
       Left    := WizardForm.FinishedLabel.Left;
       Top     := WizardForm.RunList.Top + ScaleY(55);
       Height  := ScaleY(Height);
-      Caption := 'CherryPlayer is free mediaplayer. Keep it alive with donation to WakeNet.';
+      Caption := 'CherryPlayer is free mediaplayer. Keep it alive with donation to WakeNet.'#13#10#13#10
+                 'You need to Uninstall and Install again Microsoft Redistributable package'#13#10
+                 'for Windows x64 if you have missing dll message box at CherryPlayer start';
     end;
   end;
 end;

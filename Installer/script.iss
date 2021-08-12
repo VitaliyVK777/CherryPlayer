@@ -223,7 +223,7 @@ end;
 function d3dcompilerNeedsInstall(): Boolean;
 begin
   Result := True;
-  if FileExists(ExpandConstant('{sys}\d3dcompiler_47.dll')) then
+  if FileExists(ExpandConstant('{sys}\d3dcompiler_47.dll')) then begin
     Result := False;
   end;
 end;
@@ -231,7 +231,7 @@ end;
 function d3dx9NeedsInstall(): Boolean;
 begin
   Result := True;
-  if FileExists(ExpandConstant('{sys}\d3dx9_43.dll')) then
+  if FileExists(ExpandConstant('{sys}\d3dx9_43.dll')) then begin
     Result := False;
   end;
 end;

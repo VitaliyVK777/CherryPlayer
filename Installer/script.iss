@@ -28,6 +28,11 @@
 #else
   #define MyAppFiles "files\x86\"
 #endif
+#ifdef MyAppX64
+  #define MyDxFiles "dx\x64\"
+#else
+  #define MyDxFiles "dx\x86\"
+#endif
 #define MyLangFiles "..\languages\"
 
 #define MyAppPublisher "CherryPlayer"
@@ -120,9 +125,11 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Files]
-Source: "{tmp}\{#MyAppExeName}";     DestDir: "{app}"; Flags: ignoreversion external
-Source: "{#MyAppFiles}*";            DestDir: "{app}"; Flags: ignoreversion recursesubdirs
-Source: "{#MyLangFiles}*";           DestDir: "{app}\languages"; Flags: ignoreversion recursesubdirs
+Source: "{tmp}\{#MyAppExeName}";           DestDir: "{app}"; Flags: ignoreversion external
+Source: "{#MyAppFiles}*";                  DestDir: "{app}"; Flags: ignoreversion recursesubdirs
+Source: "{#MyDxFiles}\d3dcompiler_47.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: d3dcompilerNeedsInstall()
+Source: "{#MyDxFiles}\d3dx9_43.dll";       DestDir: "{app}"; Flags: ignoreversion; Check: d3dx9NeedsInstall()
+Source: "{#MyLangFiles}*";                 DestDir: "{app}\languages"; Flags: ignoreversion recursesubdirs
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"
@@ -210,5 +217,21 @@ var
 begin
   if (CurUninstallStep = usDone) then begin
     ShellExec('open', 'https://www.cherryplayer.com/contact-us', '', '', SW_SHOW, ewNoWait, ErrCode);
+  end;
+end;
+
+function d3dcompilerNeedsInstall(): Boolean;
+begin
+  Result := True;
+  if FileExists(ExpandConstant('{sys}\d3dcompiler_47.dll')) then
+    Result := False;
+  end;
+end;
+
+function d3dx9NeedsInstall(): Boolean;
+begin
+  Result := True;
+  if FileExists(ExpandConstant('{sys}\d3dx9_43.dll')) then
+    Result := False;
   end;
 end;

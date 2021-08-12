@@ -1,7 +1,7 @@
 #pragma include __INCLUDE__ + ";" + ReadReg(HKLM, "Software\Mitrich Software\Inno Download Plugin", "InstallDir")
 
 #define MyAppName "CherryPlayer"
-#define MyAppVersion "3.3.0"
+#define MyAppVersion "3.3.1"
 #define MyAppX64
 
 #ifndef UNICODE
@@ -127,8 +127,8 @@ Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{
 [Files]
 Source: "{tmp}\{#MyAppExeName}";           DestDir: "{app}"; Flags: ignoreversion external
 Source: "{#MyAppFiles}*";                  DestDir: "{app}"; Flags: ignoreversion recursesubdirs
-Source: "{#MyDxFiles}\d3dcompiler_47.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: d3dcompilerNeedsInstall()
-Source: "{#MyDxFiles}\d3dx9_43.dll";       DestDir: "{app}"; Flags: ignoreversion; Check: d3dx9NeedsInstall()
+Source: "{#MyDxFiles}d3dcompiler_47.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: d3dcompilerNeedsInstall()
+Source: "{#MyDxFiles}d3dx9_43.dll";       DestDir: "{app}"; Flags: ignoreversion; Check: d3dx9NeedsInstall()
 Source: "{#MyLangFiles}*";                 DestDir: "{app}\languages"; Flags: ignoreversion recursesubdirs
 
 [Icons]

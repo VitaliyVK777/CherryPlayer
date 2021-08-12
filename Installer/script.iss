@@ -125,11 +125,11 @@ Name: "ukrainian"; MessagesFile: "compiler:Languages\Ukrainian.isl"
 Name: "desktopicon"; Description: "{cm:CreateDesktopIcon}"; GroupDescription: "{cm:AdditionalIcons}"
 
 [Files]
-Source: "{tmp}\{#MyAppExeName}";           DestDir: "{app}"; Flags: ignoreversion external
-Source: "{#MyAppFiles}*";                  DestDir: "{app}"; Flags: ignoreversion recursesubdirs
+Source: "{tmp}\{#MyAppExeName}";          DestDir: "{app}"; Flags: ignoreversion external
+Source: "{#MyAppFiles}*";                 DestDir: "{app}"; Flags: ignoreversion recursesubdirs
 Source: "{#MyDxFiles}d3dcompiler_47.dll"; DestDir: "{app}"; Flags: ignoreversion; Check: d3dcompilerNeedsInstall()
 Source: "{#MyDxFiles}d3dx9_43.dll";       DestDir: "{app}"; Flags: ignoreversion; Check: d3dx9NeedsInstall()
-Source: "{#MyLangFiles}*";                 DestDir: "{app}\languages"; Flags: ignoreversion recursesubdirs
+Source: "{#MyLangFiles}*";                DestDir: "{app}\languages"; Flags: ignoreversion recursesubdirs
 
 [Icons]
 Name: "{autoprograms}\{#MyAppName}"; Filename: "{app}\{#MyAppExeName}"

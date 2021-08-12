@@ -1,3 +1,8 @@
+Version 3.3.1:
+1. Improved music search.
+2. Fixed incorrect size of the preview window over playback bar during video playback from local disk.
+3. Fixed broken aspect ratio work in menu.
+
 Version 3.3.0:
 - Ported CherryPlayer to Windows 64-bit.
 - Added High DPI support.

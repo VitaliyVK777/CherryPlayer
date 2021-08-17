@@ -1,3 +1,10 @@
+Next release:
+1. Fixed crash at start playback media without extension
+2. Improved perfomance of loading radio pages
+3. Fix correct parsing music tracks for artist & title
+4. Fixed broken Delete items from the playlist after selecting them with Ctrl+A
+5. Fixed broken order of adding urls from m3u8 fils
+
 Version 3.3.1:
 1. Improved music search.
 2. Fixed incorrect size of the preview window over playback bar during video playback from local disk.

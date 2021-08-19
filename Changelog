@@ -4,6 +4,8 @@ Next release:
 3. Fix correct parsing music tracks for artist & title
 4. Fixed broken Delete items from the playlist after selecting them with Ctrl+A
 5. Fixed broken order of adding urls from m3u8 fils
+6. Fixed sometimes broken hotkeys work that include "Enter" key
+7. Added support of the "user-agent" option for iptv playback.
 
 Version 3.3.1:
 1. Improved music search.

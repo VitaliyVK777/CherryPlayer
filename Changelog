@@ -1,4 +1,4 @@
-Next release:
+Version 3.3.2:
 1. Fixed crash at start playback media without extension
 2. Improved perfomance of loading radio pages
 3. Fix correct parsing music tracks for artist & title

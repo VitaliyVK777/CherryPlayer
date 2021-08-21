@@ -1,7 +1,7 @@
 #pragma include __INCLUDE__ + ";" + ReadReg(HKLM, "Software\Mitrich Software\Inno Download Plugin", "InstallDir")
 
 #define MyAppName "CherryPlayer"
-#define MyAppVersion "3.3.1"
+#define MyAppVersion "3.3.2"
 #define MyAppX64
 
 #ifndef UNICODE
@@ -11,15 +11,15 @@
 ;#define MyAppPortable
 #ifdef MyAppPortable
   #ifdef MyAppX64
-  #define MyAppExeUrl "https://download.cherryplayer.com/portable/3_3_0/x64/CherryPlayer.exe"
+  #define MyAppExeUrl "https://download.cherryplayer.com/portable/3_3_2/x64/CherryPlayer.exe"
   #else
-  #define MyAppExeUrl "https://download.cherryplayer.com/portable/3_3_0/x86/CherryPlayer.exe"
+  #define MyAppExeUrl "https://download.cherryplayer.com/portable/3_3_2/x86/CherryPlayer.exe"
   #endif
 #else
   #ifdef MyAppX64
-  #define MyAppExeUrl "https://download.cherryplayer.com/usual/3_3_0/x64/CherryPlayer.exe"
+  #define MyAppExeUrl "https://download.cherryplayer.com/usual/3_3_2/x64/CherryPlayer.exe"
   #else
-  #define MyAppExeUrl "https://download.cherryplayer.com/usual/3_3_0/x86/CherryPlayer.exe"
+  #define MyAppExeUrl "https://download.cherryplayer.com/usual/3_3_2/x86/CherryPlayer.exe"
   #endif
 #endif
 #define MyAppExeName MyAppName + ".exe"
